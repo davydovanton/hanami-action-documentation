@@ -1,6 +1,8 @@
 module Hanami
   module Action
-    module Mixin
+    module Documentation
+      module Mixin
+      end
     end
   end
 end
