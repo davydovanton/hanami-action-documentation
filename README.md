@@ -8,6 +8,53 @@
 * web server with documentations
 
 
+```ruby
+# in the app config:
+add_swagger_documentation doc_version: '0.0.1',
+                          add_version: true,
+                          tags: [
+                            { name: 'widgets', description: 'A description of widgets' }
+                          ]
+```
+more here: https://github.com/ruby-grape/grape-swagger#info-
+
+```ruby
+module Web
+  module Controllers
+    module Posts
+      class Index
+        include Web::Action
+
+        desc "Return super-secret information" do
+          summary 'Now this is your summary!' 
+          detail 'this will expose all the kittens'
+          tags ['orders']
+          deprecated true
+
+          headers {
+            "XAuthToken" => {
+              description: "Valdates your identity",
+              required: true
+            },
+            "XOptionalHeader" => {
+              description: "Not really needed",
+              required: false
+            }
+          }
+
+          success { ... }, # or success
+          failure [[401, 'KittenBitesError', { ... }]] # or failure
+        end
+
+        def call(_params)
+          # ...
+        end
+      end
+    end
+  end
+end
+```
+
 ## Installation
 
 Add this line to your application's Gemfile:
