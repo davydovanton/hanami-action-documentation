@@ -6,6 +6,7 @@
 * grape based DSL
 * support swagger and blueprint
 * web server with documentations
+* plugins system
 
 
 ```ruby
